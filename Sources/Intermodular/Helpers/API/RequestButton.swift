@@ -59,7 +59,7 @@ public struct RequestButton<R: Request, Label: View>: View {
             .receiveOnMainQueue()
             .sinkResult(complete)
         
-        cancellable?.store(in: &session.cancellables)
+        cancellable?.store(in: session.cancellables)
         
         state = .active
     }
