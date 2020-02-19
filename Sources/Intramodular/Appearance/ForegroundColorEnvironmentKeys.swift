@@ -4,16 +4,16 @@
 
 import SwiftUIX
 
-public struct ForegroundColorEnvironmentKeys {
-    public struct Primary: EnvironmentKey {
+struct ForegroundColorEnvironmentKeys {
+    struct Primary: EnvironmentKey {
         public static var defaultValue: Color = .primary
     }
     
-    public struct Secondary: EnvironmentKey {
+    struct Secondary: EnvironmentKey {
         public static var defaultValue: Color = .secondary
     }
     
-    public struct Action: EnvironmentKey {
+    struct Action: EnvironmentKey {
         public static var defaultValue: Color = .primary
     }
 }
@@ -45,14 +45,17 @@ extension EnvironmentValues {
 }
 
 extension View {
+    /// Set the primary foreground color within `self`.
     public func primaryForegroundColor(_ color: Color) -> some View {
         environment(\.primaryForegroundColor, color)
     }
     
+    /// Set the secondary foreground color within `self`.
     public func secondaryForegroundColor(_ color: Color) -> some View {
         environment(\.secondaryForegroundColor, color)
     }
     
+    /// Set the action foreground color within `self`.
     public func actionForegroundColor(_ color: Color) -> some View {
         environment(\.actionForegroundColor, color)
     }

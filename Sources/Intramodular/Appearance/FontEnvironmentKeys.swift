@@ -4,36 +4,36 @@
 
 import SwiftUIX
 
-public struct FontEnvironmentKeys {
-    public struct LargeTitle: EnvironmentKey {
+struct FontEnvironmentKeys {
+    struct LargeTitle: EnvironmentKey {
         public static var defaultValue: Font = .largeTitle
     }
     
-    public struct Title: EnvironmentKey {
+    struct Title: EnvironmentKey {
         public static var defaultValue: Font = .largeTitle
     }
     
-    public struct Headline: EnvironmentKey {
+    struct Headline: EnvironmentKey {
         public static var defaultValue: Font = .headline
     }
     
-    public struct Subheadline: EnvironmentKey {
+    struct Subheadline: EnvironmentKey {
         public static var defaultValue: Font = .subheadline
     }
     
-    public struct Body: EnvironmentKey {
+    struct Body: EnvironmentKey {
         public static var defaultValue: Font = .body
     }
     
-    public struct Callout: EnvironmentKey {
+    struct Callout: EnvironmentKey {
         public static var defaultValue: Font = .callout
     }
     
-    public struct Footnote: EnvironmentKey {
+    struct Footnote: EnvironmentKey {
         public static var defaultValue: Font = .footnote
     }
     
-    public struct Caption: EnvironmentKey {
+    struct Caption: EnvironmentKey {
         public static var defaultValue: Font = .caption
     }
 }
