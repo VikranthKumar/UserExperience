@@ -12,7 +12,7 @@ public final class LocalAuthenticator {
         case any
     }
     
-    public class func authenticate(with type: AuthenticationType = .any) -> Future<Void, LAError> {
+    public class func authenticate(with type: AuthenticationType = .any) -> Future<Void, Error> {
         Future { attemptToFulfill in
             let localAuthenticationContext = LAContext()
             localAuthenticationContext.localizedFallbackTitle = "Use Passcode"
