@@ -5,20 +5,15 @@
 import SwiftUIX
 
 public struct SystemButton<Label: View>: View {
-    private let action: () -> ()
+    private var actions: Actions
     private let label: Label
     
-    private var feedbackGeneratorAndStyle: (FeedbackGenerator, FeedbackGenerator.FeedbackStyle)? = nil
-    
+    @Environment(\.feedbackGenerator) private var feedbackGenerator
     @Environment(\.weight) var weight
     
     public init(action: @escaping () -> (), @ViewBuilder label: () -> Label) {
-        self.action = action
+        self.actions = .init(initial: action)
         self.label = label()
-        
-        feedbackGeneratorAndStyle = FeedbackGenerator.ImpactFeedbackStyle(for: weight).map {
-            (.init(), .impact($0))
-        }
     }
     
     public var body: some View {
@@ -26,8 +21,18 @@ public struct SystemButton<Label: View>: View {
     }
     
     private func trigger() {
-        feedbackGeneratorAndStyle.map({ $0.0.generate($0.1) })
+        if let impactStyle = FeedbackGenerator.ImpactFeedbackStyle(for: weight) {
+            feedbackGenerator.generate(.impact(impactStyle))
+        }
         
-        action()
+        actions.perform()
+    }
+}
+
+// MARK: - Protocol Implementations -
+
+extension SystemButton: ActionTriggerView {
+    public func onPrimaryTrigger(perform action: @escaping () -> ()) -> Self {
+        then({ $0.actions.insert(action) })
     }
 }
