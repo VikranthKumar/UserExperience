@@ -5,7 +5,7 @@
 import Merge
 import SwiftUIX
 
-public struct SystemBottomSheet<Content: View>: View {
+public struct SystemBottomSheetContent<Content: View>: View {
     private let content: Content
     
     public init(@ViewBuilder content: () -> Content) {
@@ -14,7 +14,7 @@ public struct SystemBottomSheet<Content: View>: View {
     
     public var body: some View {
         content.padding().background(
-            SystemFill()
+            Color.white
                 .cornerRadius([.topLeft, .topRight], .defaultSystemCornerRadius)
                 .edgesIgnoringSafeArea(.all)
         )
@@ -26,7 +26,7 @@ extension DynamicViewPresenter {
         @ViewBuilder content: () -> Content
     ) {
         presentOnTop(
-            SystemBottomSheet {
+            SystemBottomSheetContent {
                 content()
             },
             presentationStyle: .align(source: .bottom)
