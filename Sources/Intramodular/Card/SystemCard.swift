@@ -11,7 +11,7 @@ public struct SystemCard<Content: View>: View {
     
     public let content: Content
     
-    public init(content: () -> Content) {
+    public init(@ViewBuilder content: () -> Content) {
         self.content = content()
     }
     
