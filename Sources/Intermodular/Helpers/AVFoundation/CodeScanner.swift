@@ -16,6 +16,8 @@ public struct CodeScannerView: UIViewControllerRepresentable, SetModelView {
     
     private var codeTypes: [AVMetadataObject.ObjectType] = []
     
+    @Environment(\.isEnabled) var isEnabled
+    
     public init(_ result: SetBinding<Model>) {
         self._result = .init(set: result, defaultValue: .failure(.badOutput))
     }
@@ -29,7 +31,11 @@ public struct CodeScannerView: UIViewControllerRepresentable, SetModelView {
     }
     
     public func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        
+        if uiViewController.captureSession.isRunning != isEnabled {
+            isEnabled
+                ? uiViewController.captureSession.startRunning()
+                : uiViewController.captureSession.stopRunning()
+        }
     }
     
     public func makeCoordinator() -> Coordinator {
@@ -127,7 +133,6 @@ extension CodeScannerView {
             if let metadataObject = metadataObjects.first {
                 guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
                 guard let stringValue = readableObject.stringValue else { return }
-                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                 found(code: stringValue)
             }
         }
