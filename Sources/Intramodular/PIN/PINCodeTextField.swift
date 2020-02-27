@@ -75,8 +75,6 @@ public struct PINCodeTextField: CocoaView, UIViewRepresentable {
         
         public func textFieldValueChanged(_ textField: UIPINCodeTextField) {
             base.text = textField.text ?? ""
-            
-            base.onEditingChanged(true)
         }
         
         public func textFieldShouldEndEditing(_ textField: UIPINCodeTextField) -> Bool {
