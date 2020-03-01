@@ -32,9 +32,11 @@ public struct CodeScannerView: UIViewControllerRepresentable, SetModelView {
     
     public func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
         if uiViewController.captureSession.isRunning != isEnabled {
-            isEnabled
-                ? uiViewController.captureSession.startRunning()
-                : uiViewController.captureSession.stopRunning()
+            DispatchQueue.global(qos: .userInteractive).async {
+                self.isEnabled
+                    ? uiViewController.captureSession.startRunning()
+                    : uiViewController.captureSession.stopRunning()
+            }
         }
     }
     
@@ -49,10 +51,19 @@ extension CodeScannerView {
         var previewLayer: AVCaptureVideoPreviewLayer!
         var delegate: Coordinator?
         
+        override public var prefersStatusBarHidden: Bool {
+            return true
+        }
+        
+        override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+            return .portrait
+        }
+        
         override public func viewDidLoad() {
             super.viewDidLoad()
             
             view.backgroundColor = UIColor.black
+            
             captureSession = AVCaptureSession()
             
             guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
@@ -86,33 +97,16 @@ extension CodeScannerView {
             previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             previewLayer.frame = view.layer.bounds
             previewLayer.videoGravity = .resizeAspectFill
+            
             view.layer.addSublayer(previewLayer)
-            
-            captureSession.startRunning()
         }
         
-        override public func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
+        override public func viewDidDisappear(_ animated: Bool) {
+            super.viewDidDisappear(animated)
             
-            if (captureSession?.isRunning == false) {
-                captureSession.startRunning()
+            DispatchQueue.global(qos: .userInteractive).async {
+                self.captureSession.stopRunning()
             }
-        }
-        
-        override public func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            
-            if (captureSession?.isRunning == true) {
-                captureSession.stopRunning()
-            }
-        }
-        
-        override public var prefersStatusBarHidden: Bool {
-            return true
-        }
-        
-        override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-            return .portrait
         }
     }
     

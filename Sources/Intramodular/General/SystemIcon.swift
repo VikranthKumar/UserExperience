@@ -22,7 +22,7 @@ public struct SystemIcon: View {
                 .frame(
                     minWidth: geometry.frame?.maximumDimensionLength,
                     minHeight: geometry.frame?.maximumDimensionLength
-            )
+                )
                 .background(Color.clear)
                 .contentShape(Rectangle())
         }
