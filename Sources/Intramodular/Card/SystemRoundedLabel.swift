@@ -19,7 +19,7 @@ public struct SystemRoundedLabel<Content: View>: View {
         content
             .padding(for: .small)
             .background(self.secondarySystemFill)
-            .systemCornerRadius()
+            .clipSystemIconShape()
     }
 }
 

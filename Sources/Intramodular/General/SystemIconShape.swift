@@ -5,7 +5,7 @@
 import Merge
 import SwiftUIX
 
-public struct SystemRoundedRectangle: Shape {
+public struct SystemIconShape: Shape {
     public init() {
         
     }
@@ -18,16 +18,10 @@ public struct SystemRoundedRectangle: Shape {
     }
 }
 
-public struct SystemCornerRadiusModifier: ViewModifier {
-    public func body(content: Content) -> some View {
-        content.clipShape(SystemRoundedRectangle())
-    }
-}
-
-// MARK: - Helpers -
+// MARK: - API -
 
 extension View {
-    public func systemCornerRadius() -> some View {
-        modifier(SystemCornerRadiusModifier())
+    public func clipSystemIconShape() -> some View {
+        clipShape(SystemIconShape())
     }
 }

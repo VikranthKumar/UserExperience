@@ -12,15 +12,15 @@ private struct SystemButtonStyle: ButtonStyle {
             Spacer()
         }
         .frame(minHeight: 44, idealHeight: 52)
-        .clipShape(SystemRoundedRectangle())
-        .contentShape(SystemRoundedRectangle())
+        .clipShape(SystemIconShape())
+        .contentShape(SystemIconShape())
     }
 }
 
 extension View {
     public func systemButtonStyle() -> some View {
         buttonStyle(SystemButtonStyle())
-            .clipShape(SystemRoundedRectangle())
-            .contentShape(SystemRoundedRectangle())
+            .clipShape(SystemIconShape())
+            .contentShape(SystemIconShape())
     }
 }
