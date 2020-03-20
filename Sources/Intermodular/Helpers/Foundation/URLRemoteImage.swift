@@ -53,7 +53,12 @@ private extension URLSession {
             create: true
         ).absoluteString
         
+        #if targetEnvironment(macCatalyst)
+        let cache = URLCache(memoryCapacity: 1_024 * 1_024 * 8, diskCapacity: 1_024 * 1_024 * 64, directory: URL(fileURLWithPath: cachePath!))
+        #else
         let cache = URLCache(memoryCapacity: 1_024 * 1_024 * 8, diskCapacity: 1_024 * 1_024 * 64, diskPath: cachePath)
+        #endif
+        
         let configuration = URLSessionConfiguration.default
         
         configuration.urlCache = cache
