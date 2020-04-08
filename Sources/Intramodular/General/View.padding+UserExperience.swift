@@ -39,12 +39,15 @@ extension ContentSizeCategory {
 
 extension View {
     @inlinable
-    public func padding(for category: ContentSizeCategory) -> some View {
+    public func padding(forSizeCategory category: ContentSizeCategory) -> some View {
         padding(category.systemPaddingLength)
     }
     
     @inlinable
-    public func padding(_ edges: Edge.Set = .all, for category: ContentSizeCategory) -> some View {
+    public func padding(
+        _ edges: Edge.Set = .all,
+        forSizeCategory category: ContentSizeCategory
+    ) -> some View {
         padding(edges, category.systemPaddingLength)
     }
 }

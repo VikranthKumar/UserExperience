@@ -19,10 +19,7 @@ public struct SystemIcon: View {
         IntrinsicGeometryReader { geometry in
             Image(systemName: self.name)
                 .imageScale(self.imageScale)
-                .frame(
-                    minWidth: geometry.frame?.maximumDimensionLength,
-                    minHeight: geometry.frame?.maximumDimensionLength
-                )
+                .frame(minWidth: geometry.frame?.maximumDimensionLength, minHeight: geometry.frame?.maximumDimensionLength)
                 .background(Color.clear)
                 .contentShape(Rectangle())
         }

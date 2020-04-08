@@ -22,6 +22,7 @@ public struct SystemBottomSheetContent<Content: View>: View {
 }
 
 extension DynamicViewPresenter {
+    @_optimize(none)
     public func presentSystemBottomSheet<Content: View>(
         @ViewBuilder content: () -> Content
     ) {

@@ -7,8 +7,6 @@ import SwiftUIX
 
 /// A button whose primary action can be modified even after construction.
 public struct SystemIconButton: opaque_ActionButton, ActionTriggerView {
-    @Environment(\.tintColor) var tintColor // FIXME
-    
     private let name: SanFranciscoSymbolName
     private var action: () -> Void
     

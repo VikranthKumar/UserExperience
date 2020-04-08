@@ -7,18 +7,26 @@ import Foundation
 import SwiftUIX
 
 public struct URLRemoteImage<Placeholder: View>: View {
+    @usableFromInline
     let placeholder: Placeholder
+    
+    @usableFromInline
     let url: URL?
+    
+    @usableFromInline
     let urlSession: URLSession = .images
     
-    @State private var image: Image?
+    @usableFromInline
+    @State var image: Image?
     
+    @inlinable
     public init(url: URL?, @ViewBuilder placeholder: () -> Placeholder) {
         self.url = url
         self.placeholder = placeholder()
     }
     
-    private func dataPublisher() -> AnyPublisher<Data?, Never> {
+    @usableFromInline
+    func dataPublisher() -> AnyPublisher<Data?, Never> {
         if let url = url {
             return urlSession
                 .dataTaskPublisher(for: url)
@@ -32,6 +40,7 @@ public struct URLRemoteImage<Placeholder: View>: View {
         }
     }
     
+    @inlinable
     public var body: some View {
         image.ifSome { image in
             image.resizable()
@@ -69,6 +78,7 @@ private extension URLSession {
 }
 
 extension View {
+    @inlinable
     public func remoteImage(from url: URL?) -> some View {
         URLRemoteImage(url: url) {
             self

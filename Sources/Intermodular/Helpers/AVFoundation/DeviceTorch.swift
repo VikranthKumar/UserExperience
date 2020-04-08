@@ -13,7 +13,7 @@ open class DeviceTorch {
         AVCaptureDevice.default(for: .video)?.isTorchActive ?? false
     }
     
-    class func set(_ isEnabled: Bool) throws {
+    public final class func set(_ isEnabled: Bool) throws {
         if let device = AVCaptureDevice.default(for: .video), device.hasTorch {
             try device.lockForConfiguration()
             try device.setTorchModeOn(level: 1.0)

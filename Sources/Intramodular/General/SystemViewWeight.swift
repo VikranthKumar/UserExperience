@@ -5,11 +5,16 @@
 import Swift
 import SwiftUIX
 
+/// The user-perceptible weight of a view.
 public enum SystemViewWeight {
     case none
     case light
     case regular
     case heavy
+    
+    init() {
+        self = .regular
+    }
 }
 
 // MARK: - Helpers -
@@ -29,10 +34,10 @@ extension FeedbackGenerator.ImpactFeedbackStyle {
     }
 }
 
-public struct SystemViewWeightEnvironmentKey: EnvironmentKey {
-    public static var defaultValue: SystemViewWeight {
-        return .regular
-    }
+// MARK: - Environment -
+
+private struct SystemViewWeightEnvironmentKey: EnvironmentKey {
+    static let defaultValue: SystemViewWeight = .regular
 }
 
 extension EnvironmentValues {

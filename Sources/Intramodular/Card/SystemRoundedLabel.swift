@@ -17,7 +17,7 @@ public struct SystemRoundedLabel<Content: View>: View {
     
     public var body: some View {
         content
-            .padding(for: .small)
+            .padding(forSizeCategory: .small)
             .background(self.secondarySystemFill)
             .clipSystemIconShape()
     }
