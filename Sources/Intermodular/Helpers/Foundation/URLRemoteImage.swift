@@ -14,7 +14,10 @@ public struct URLRemoteImage<Placeholder: View>: View {
     let url: URL?
     
     @usableFromInline
-    let urlSession: URLSession = .images
+    let urlSession = URLSession.images
+    
+    @usableFromInline
+    @State var urlTask: AnyCancellable?
     
     @usableFromInline
     @State var image: Image?
@@ -24,30 +27,24 @@ public struct URLRemoteImage<Placeholder: View>: View {
         self.url = url
         self.placeholder = placeholder()
     }
-    
-    @usableFromInline
-    func dataPublisher() -> AnyPublisher<Data?, Never> {
-        if let url = url {
-            return urlSession
-                .dataTaskPublisher(for: url)
-                .map { $0.data }
-                .replaceError(with: nil)
-                .receive(on: DispatchQueue.main)
-                .eraseToAnyPublisher()
-        } else {
-            return Just(nil)
-                .eraseToAnyPublisher()
-        }
-    }
-    
+        
     @inlinable
     public var body: some View {
         image.ifSome { image in
             image.resizable()
         }.else {
-            placeholder
-                .onReceive(dataPublisher()) { output in
-                    self.image = output.flatMap(Image.init(data:))
+            placeholder.onAppear {
+                if let url = self.url {
+                    self.urlTask = self.urlSession
+                        .dataTaskPublisher(for: url)
+                        .map({ $0.data })
+                        .replaceError(with: nil)
+                        .receive(on: DispatchQueue.main)
+                        .eraseToAnyPublisher()
+                        .sink(receiveValue: {
+                            self.image = $0.flatMap(Image.init(data:))
+                        })
+                }
             }
         }
     }
@@ -83,5 +80,6 @@ extension View {
         URLRemoteImage(url: url) {
             self
         }
+        .id(url)
     }
 }
