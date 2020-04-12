@@ -17,7 +17,7 @@ let package = Package(
         .package(url: "git@github.com:vmanot/API.git", .branch("master")),
         .package(url: "git@github.com:vmanot/Merge.git", .branch("master")),
         .package(url: "git@github.com:vmanot/Reactor.git", .branch("master")),
-        .package(url: "https://github.com/SwiftUIX/SwiftUIX.git", .branch("master")),
+        .package(url: "git@github.com:SwiftUIX/SwiftUIX.git", .branch("master")),
     ],
     targets: [
         .target(
