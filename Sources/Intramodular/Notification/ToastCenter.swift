@@ -1,3 +1,6 @@
+
+#if os(iOS) || targetEnvironment(macCatalyst)
+
 import UIKit
 
 open class ToastCenter: NSObject {
@@ -69,3 +72,5 @@ open class ToastCenter: NSObject {
     }
     
 }
+
+#endif

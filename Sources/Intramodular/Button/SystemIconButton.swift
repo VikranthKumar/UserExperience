@@ -5,6 +5,8 @@
 import Merge
 import SwiftUIX
 
+#if os(iOS) || os(tvOS) || targetEnvironment(macCatalyst)
+
 /// A button whose primary action can be modified even after construction.
 public struct SystemIconButton: opaque_ActionButton, ActionTriggerView {
     private let name: SanFranciscoSymbolName
@@ -28,3 +30,5 @@ public struct SystemIconButton: opaque_ActionButton, ActionTriggerView {
         then({ $0.action = { self.action(); action() } })
     }
 }
+
+#endif

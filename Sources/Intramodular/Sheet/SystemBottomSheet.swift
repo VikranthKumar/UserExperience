@@ -5,6 +5,8 @@
 import Merge
 import SwiftUIX
 
+#if os(iOS) || targetEnvironment(macCatalyst)
+
 public struct SystemBottomSheetContent<Content: View>: View {
     private let content: Content
     
@@ -34,3 +36,5 @@ extension DynamicViewPresenter {
         )
     }
 }
+
+#endif

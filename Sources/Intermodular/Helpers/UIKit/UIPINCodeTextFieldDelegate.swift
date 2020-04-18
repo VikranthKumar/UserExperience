@@ -2,6 +2,8 @@
 //  Copyright (c) Vatsal Manot
 //
 
+#if os(iOS) || targetEnvironment(macCatalyst)
+
 import SwiftUIX
 import UIKit
 
@@ -39,3 +41,5 @@ public extension UIPINCodeTextFieldDelegate {
         return true
     }
 }
+
+#endif

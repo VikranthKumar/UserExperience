@@ -1,3 +1,6 @@
+
+#if os(iOS) || targetEnvironment(macCatalyst)
+
 import UIKit
 
 open class ToastWindow: UIWindow {
@@ -229,3 +232,5 @@ open class ToastWindow: UIWindow {
     }
     
 }
+
+#endif

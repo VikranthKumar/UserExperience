@@ -1,3 +1,6 @@
+
+#if os(iOS) || targetEnvironment(macCatalyst)
+
 import UIKit
 
 public class Delay: NSObject {
@@ -157,3 +160,5 @@ open class Toast: Operation {
     }
     
 }
+
+#endif

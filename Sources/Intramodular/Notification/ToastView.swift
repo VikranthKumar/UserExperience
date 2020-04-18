@@ -1,3 +1,6 @@
+
+#if os(iOS) || targetEnvironment(macCatalyst)
+
 import UIKit
 
 open class ToastView: UIView {
@@ -222,3 +225,5 @@ open class ToastView: UIView {
     }
     
 }
+
+#endif

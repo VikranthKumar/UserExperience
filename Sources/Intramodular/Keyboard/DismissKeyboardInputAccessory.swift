@@ -5,6 +5,8 @@
 import Merge
 import SwiftUIX
 
+#if os(iOS) || os(tvOS) || targetEnvironment(macCatalyst)
+
 public struct DismissKeyboardInputAccessory: View {
     @Environment(\.actionForegroundColor) var actionForegroundColor
     
@@ -34,3 +36,4 @@ public struct DismissKeyboardInputAccessory: View {
     }
 }
 
+#endif

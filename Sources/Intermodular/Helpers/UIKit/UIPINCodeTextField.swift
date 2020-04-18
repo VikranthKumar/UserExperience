@@ -2,6 +2,8 @@
 //  Copyright (c) Vatsal Manot
 //
 
+#if os(iOS) || targetEnvironment(macCatalyst)
+
 import SwiftUIX
 import UIKit
 
@@ -432,3 +434,5 @@ extension UIPINCodeTextField: UIKeyInput {
         delegate?.textFieldValueChanged(self)
     }
 }
+
+#endif

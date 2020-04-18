@@ -6,6 +6,8 @@
 //  Copyright © 2019 Suyeol Jeon. All rights reserved.
 //
 
+#if os(iOS) || targetEnvironment(macCatalyst)
+
 import Foundation
 
 extension UIApplication {
@@ -20,3 +22,5 @@ extension UIApplication {
     }()
     
 }
+
+#endif 

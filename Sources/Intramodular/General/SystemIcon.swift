@@ -6,6 +6,8 @@ import Combine
 import Swift
 import SwiftUIX
 
+#if os(iOS) || os(tvOS) || targetEnvironment(macCatalyst)
+
 public struct SystemIcon: View {
     @Environment(\.imageScale) var imageScale
     
@@ -42,3 +44,5 @@ extension Image.Scale {
         }
     }
 }
+
+#endif
