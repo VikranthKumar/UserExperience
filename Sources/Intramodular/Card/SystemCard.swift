@@ -19,7 +19,7 @@ public struct SystemCard<Content: View>: View {
         content
             .padding()
             .background(self.quaternarySystemFill)
-            .clipSystemIconShape()
+            .clipShape(RoundedRectangle(cornerRadius: .defaultSystemCornerRadius, style: .continuous))
     }
 }
 
