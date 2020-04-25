@@ -8,12 +8,12 @@ import SwiftUIX
 
 #if os(iOS) || os(tvOS) || targetEnvironment(macCatalyst)
 
-public struct SystemIcon: View {
+public struct SanFranciscoSymbol: View {
     @Environment(\.imageScale) var imageScale
     
     private let name: SanFranciscoSymbolName
     
-    public init(name: SanFranciscoSymbolName) {
+    public init(_ name: SanFranciscoSymbolName) {
         self.name = name
     }
     

@@ -6,7 +6,7 @@
 
 import SwiftUIX
 
-public struct SystemRoundedLabel<Content: View>: View {
+public struct RoundedLabel<Content: View>: View {
     @Environment(\.secondarySystemFill) var secondarySystemFill
     
     public let content: Content
@@ -19,7 +19,7 @@ public struct SystemRoundedLabel<Content: View>: View {
         content
             .padding(forSizeCategory: .small)
             .background(self.secondarySystemFill)
-            .clipSystemIconShape()
+            .clipShape(IconShape())
     }
 }
 
