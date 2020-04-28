@@ -13,4 +13,5 @@ public struct DragHandle: View {
             .frame(width: 50, height: 4, alignment: .center)
             .foregroundColor(.primary)
             .opacity(verticalSizeClass == .compact ? 0 : 1)
+    }
 }
