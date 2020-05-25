@@ -49,11 +49,19 @@ public struct QuaternarySystemFillEnvironmentKey: EnvironmentKey {
 
 extension EnvironmentValues {
     public var primarySystemColor: Color {
-        self[PrimarySystemColorEnvironmentKey.self]
+        get {
+            self[PrimarySystemColorEnvironmentKey]
+        } set {
+            self[PrimarySystemColorEnvironmentKey] = newValue
+        }
     }
     
     public var secondarySystemColor: Color {
-        self[SecondarySystemColorEnvironmentKey.self]
+        get {
+            self[SecondarySystemColorEnvironmentKey]
+        } set {
+            self[SecondarySystemColorEnvironmentKey] = newValue
+        }
     }
 }
 
